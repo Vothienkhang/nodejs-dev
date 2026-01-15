@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  
+    
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
@@ -10,9 +10,11 @@ module.exports = {
         firstName: 'Khang',
         lastName: 'Vo',
         address: 'HCM City',
+        phonenumber: "0919258999",
         gender: 1,
-        typeRole: 'ROLE',
-        keyRole: 'R1',
+        image: "",
+        roleID: 'R1',
+        positionID: '123',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
