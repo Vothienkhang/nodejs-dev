@@ -1,10 +1,11 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
+    "username": "root",
+    "password": "Khang@1234",
     "database": "nodejs_dev",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql",
+    "logging": false
   },
   "test": {
     "username": "postgres",
