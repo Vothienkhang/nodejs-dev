@@ -122,9 +122,9 @@ let createNewUser = (data) => {
             // check email is exist 
             let check = await checkUserEmail(data.email);
             if (check === true) {
-                resolve({
+                return resolve({
                     errCode: 1,
-                    message: "The email is already in use. Please try another email."
+                    errMessage: "The email is already in use. Please try another email."
                 });
                 // return;
             }
@@ -142,7 +142,7 @@ let createNewUser = (data) => {
                 positionID: data.positionID,
             })
 
-            resolve({
+            return resolve({
                 errCode: 0,
                 message: "Create new user successfully"
             });
