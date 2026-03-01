@@ -196,7 +196,7 @@ let updateUserData = (data) => {
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
                 user.address = data.address;
-                user.email = data.email;
+                // user.email = data.email;
                 user.phonenumber = data.phonenumber;   
                 user.gender = data.gender === '1' ? true : false;
                 user.roleID = data.roleID;
