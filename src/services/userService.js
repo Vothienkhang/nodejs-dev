@@ -23,7 +23,7 @@ let handleUserLogin = (email, password) => {
                 // User already existed
 
                 let user = await db.User.findOne({
-                    attributes: ['email', 'roleId', 'password'],  // define which columns can be shown
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],  // define which columns can be shown
                     // exclude: ['password']          // // define which columns can not be shown  
                     where: { email: email },
                     raw: true
@@ -183,9 +183,9 @@ let updateUserData = (data) => {
         try {
             if (!data.id) {
                 resolve({
-                    errCode: 2, 
+                    errCode: 2,
                     message: "Missing required parameters"
-                }); 
+                });
             }
 
             let user = await db.User.findOne({
@@ -197,7 +197,7 @@ let updateUserData = (data) => {
                 user.lastName = data.lastName;
                 user.address = data.address;
                 // user.email = data.email;
-                user.phonenumber = data.phonenumber;   
+                user.phonenumber = data.phonenumber;
                 user.gender = data.gender === '1' ? true : false;
                 user.roleID = data.roleID;
                 user.positionID = data.positionID;
@@ -222,10 +222,36 @@ let updateUserData = (data) => {
     });
 }
 
+let getAllCodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if(!typeInput) {
+                resolve({
+                    errCode: 1,
+                    message: "Missing required parameters",
+                    data: []
+                });
+            }
+            let allCode = await db.Allcode.findAll({
+                where: { type: typeInput }
+            });
+            resolve({
+                errCode: 0,
+                message: "Get allcode successfully",
+                data: allCode
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+
 module.exports = {
     handleUserLogin: handleUserLogin,
     getAllUsers: getAllUsers,
     createNewUser: createNewUser,
     deleteUser: deleteUser,
-    updateUserData: updateUserData
+    updateUserData: updateUserData,
+    getAllCodeService: getAllCodeService
 }
